@@ -1,2 +1,2 @@
-# Machine-Learning-1
-Machine Learning algorithms and applications.
+# Machine-Learning-Examples-1
+Examples of machine learning algorithms and applications.
