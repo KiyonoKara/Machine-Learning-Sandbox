@@ -50,3 +50,21 @@ def variance(list_of_numbers, mean_value):
     :return: The variance
     """
     return sum([(x - mean_value) ** 2 for x in list_of_numbers])
+
+
+def covariance(list_x, mean_x, list_y, mean_y):
+    """
+    Returns the covariance between two lists of numbers and uses both of their means
+
+    :type list_x: list[float]
+    :param list_x: List of numbers
+    :type mean_x: float
+    :param mean_x: The mean of 'x' list of numbers
+    :type list_y: list[float]
+    :param list_y: List of numbers
+    :type mean_y: float
+    :param mean_y: The mean of 'y' list of numbers
+    :rtype: float
+    :return: The covariance
+    """
+    return sum((x_i - mean_x) * (y_i - mean_y) for x_i, y_i in zip(list_x, list_y))
