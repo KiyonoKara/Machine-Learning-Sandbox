@@ -1,7 +1,7 @@
 import statistics
 
 
-def mean(list_of_numbers):
+def mean(list_of_numbers: list[float]):
     """
     Returns mean value (average) from a list of numbers, optimized using the native function
 
@@ -13,7 +13,7 @@ def mean(list_of_numbers):
     return sum(list_of_numbers) / len(list_of_numbers)
 
 
-def median(list_of_numbers):
+def median(list_of_numbers: list[float]):
     """
     Returns median value (middle) from a list of numbers, optimized using the native function
 
@@ -25,7 +25,7 @@ def median(list_of_numbers):
     return statistics.median(list_of_numbers)
 
 
-def mode(list_of_numbers):
+def mode(list_of_numbers: list[float]):
     """
     Returns the mode (most frequent) from a list of numbers, optimized using the native function
 
@@ -37,7 +37,7 @@ def mode(list_of_numbers):
     return statistics.mode(list_of_numbers)
 
 
-def variance(list_of_numbers, mean_value):
+def variance(list_of_numbers: list[float], mean_value: float):
     """
     Returns the variance from a supplied list of numbers and mean.
     Found by taking the average of squared deviations from the mean
@@ -52,7 +52,7 @@ def variance(list_of_numbers, mean_value):
     return sum([(x - mean_value) ** 2 for x in list_of_numbers])
 
 
-def covariance(list_x, mean_x, list_y, mean_y):
+def covariance(list_x: list[float], mean_x: float, list_y: list[float], mean_y: float):
     """
     Returns the covariance between two lists of numbers and uses both of their means
 
