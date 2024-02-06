@@ -1,4 +1,6 @@
+import math
 import statistics
+import numpy as np
 
 
 def mean(list_of_numbers: list[float]):
@@ -68,3 +70,16 @@ def covariance(list_x: list[float], mean_x: float, list_y: list[float], mean_y: 
     :return: The covariance
     """
     return sum((x_i - mean_x) * (y_i - mean_y) for x_i, y_i in zip(list_x, list_y))
+
+
+def softmax(z: list[float], tau: float) -> list[float]:
+    """
+    Computes softmax values for each element in z with temperature represented as tau
+    :param z: The sore
+    :param tau: The temperature
+    :return: Probability distribution(s) for each element in z affected by tau
+    """
+    z_norm = list(map(lambda z_i: z_i / tau, z))
+    z_exp = list(map(lambda z_i: math.exp(z_i), z_norm))
+    prob_dists = list(map(lambda z_e: z_e / sum(z_exp), z_exp))
+    return prob_dists
