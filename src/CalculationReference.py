@@ -90,7 +90,9 @@ def softmax_temperature(z: list[float], tau: float) -> list[float]:
     :param tau: The temperature
     :return: Probability distribution(s) for each element in z affected by tau
     """
-    z_norm = list(map(lambda z_i: z_i / tau, z))
+    z_norm = z
+    if tau != 1.0:
+        z_norm = list(map(lambda z_i: z_i / tau, z))
     z_exp = list(map(lambda z_i: math.exp(z_i), z_norm))
     prob_dists = list(map(lambda z_e: z_e / sum(z_exp), z_exp))
     return prob_dists
