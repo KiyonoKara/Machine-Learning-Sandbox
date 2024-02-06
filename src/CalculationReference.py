@@ -76,7 +76,7 @@ def softmax(z: list[float]) -> list[float]:
     Computes softmax values for each element in z
     Makes call on softmax_temperature by setting tau to 1.0 and producing the origin
     softmax distribution
-    :param z: The score
+    :param z: The scores
     :return: Probability distribution(s) for each element in z
     """
     prob_dists = softmax_temperature(z, tau=1.0)
@@ -86,7 +86,7 @@ def softmax(z: list[float]) -> list[float]:
 def softmax_temperature(z: list[float], tau: float) -> list[float]:
     """
     Computes softmax values for each element in z with temperature represented as tau
-    :param z: The sore
+    :param z: The scores
     :param tau: The temperature
     :return: Probability distribution(s) for each element in z affected by tau
     """
