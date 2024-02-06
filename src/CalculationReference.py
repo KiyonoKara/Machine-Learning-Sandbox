@@ -96,3 +96,12 @@ def softmax_temperature(z: list[float], tau: float) -> list[float]:
     z_exp = list(map(lambda z_i: math.exp(z_i), z_norm))
     prob_dists = list(map(lambda z_e: z_e / sum(z_exp), z_exp))
     return prob_dists
+
+
+def sigmoid(z: list[float]) -> list[float]:
+    """
+    Computes sigmoid values for each element in z
+    :param z: The scores
+    :return: Probability distribution(s) for each element in z
+    """
+    return list(map(lambda z_i: 1 / (1 + math.exp(-z_i)), z))
