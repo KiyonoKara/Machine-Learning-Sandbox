@@ -108,3 +108,29 @@ def sigmoid(z: Union[float, list[float]]) -> Union[float, list[float]]:
     if isinstance(z, float) or isinstance(z, int):
         return 1 / (1 + math.exp(-z))
     return list(map(lambda z_i: 1 / (1 + math.exp(-z_i)), z))
+
+
+def stdev(nums: list[float], dev_type='population') -> float:
+    """
+    Computes standard deviation given a list of floats
+    Returns 0 if only one number is provided
+    Defaults to population standard deviation
+    :param nums: List of floats
+    :param dev_type: STDEV type, population or sample
+    :return: The standard deviation
+    """
+    if len(nums) <= 1:
+        return 0
+    dev_type_dict = {
+        'population': 0,
+        'sample': 1
+    }
+    # Get number to subtract from N
+    # Population: N - 0 = N
+    # Sample: N - 1
+    p = dev_type_dict.get(dev_type, 0)
+    # Mean
+    m = mean(nums)
+    # Variance
+    v = variance(nums, m) / (len(nums) - p)
+    return math.sqrt(v)
