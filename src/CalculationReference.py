@@ -1,5 +1,6 @@
 import math
 import statistics
+from typing import Union
 
 
 def mean(list_of_numbers: list[float]):
@@ -98,10 +99,12 @@ def softmax_temperature(z: list[float], tau: float) -> list[float]:
     return prob_dists
 
 
-def sigmoid(z: list[float]) -> list[float]:
+def sigmoid(z: Union[float, list[float]]) -> Union[float, list[float]]:
     """
     Computes sigmoid values for each element in z
     :param z: The scores
     :return: Probability distribution(s) for each element in z
     """
+    if isinstance(z, float) or isinstance(z, int):
+        return 1 / (1 + math.exp(-z))
     return list(map(lambda z_i: 1 / (1 + math.exp(-z_i)), z))
