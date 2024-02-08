@@ -134,3 +134,15 @@ def stdev(nums: list[float], dev_type='population') -> float:
     # Variance
     v = variance(nums, m) / (len(nums) - p)
     return math.sqrt(v)
+
+
+def dot_product(v1: list[float], v2: list[float]) -> float:
+    """
+    Computes dot product of two vectors as lists
+    :param v1: First vector
+    :param v2: Second vector
+    :return:
+    """
+    if len(v1) != len(v2):
+        raise ValueError(f'Vectors must have same dimensions, got ({len(v1)}) and ({len(v2)})')
+    return sum([v_i * v_j for v_i, v_j in zip(v1, v2)])
