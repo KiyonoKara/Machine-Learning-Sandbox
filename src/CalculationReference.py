@@ -134,6 +134,15 @@ def sigmoid(z: Union[float, list[float]]) -> Union[float, list[float]]:
     return list(map(lambda z_i: 1 / (1 + math.exp(-z_i)), z))
 
 
+def relu(x: float) -> float:
+    """
+    Computes ReLU value for the supplied number
+    :param x: The float
+    :return: The ReLU result
+    """
+    return x * (x > 0.0)
+
+
 def stdev(nums: list[float], dev_type='population') -> float:
     """
     Computes standard deviation given a list of floats
