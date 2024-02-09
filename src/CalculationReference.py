@@ -1,5 +1,6 @@
 import math
 from typing import Union
+from collections import Counter
 
 
 def mean(list_of_numbers: list[float]):
@@ -27,7 +28,7 @@ def median(list_of_numbers: list[float]):
     if length == 0:
         raise ValueError("List must have at least one element")
     elif length == 1:
-        return list_of_numbers.pop()
+        return list_of_numbers[0]
     sorted_nums = sorted(list_of_numbers)
     middle = length // 2
     if not length % 2:
@@ -47,7 +48,7 @@ def mode(list_of_numbers: list[float]) -> float:
     return max(set(list_of_numbers), key=list_of_numbers.count)
 
 
-def mode_v2(list_of_numbers: list[float]):
+def mode_v2(list_of_numbers: list[float]) -> Union[float, list[float]]:
     """
     Returns the mode(s) (most frequent numbers) from a list of numbers
     May return a list if there are multiple modes, otherwise it's a single float
@@ -56,6 +57,10 @@ def mode_v2(list_of_numbers: list[float]):
     :rtype: Union[float, list[float]]
     :return: Mode value(s)
     """
+    counts = Counter(list_of_numbers)
+    max_frequency = max(counts.values())
+    modes = [n for n, frequency in counts.items() if frequency == max_frequency]
+    return modes[0] if len(modes) == 1 else modes
 
 
 def variance(list_of_numbers: list[float], mean_value: float):
