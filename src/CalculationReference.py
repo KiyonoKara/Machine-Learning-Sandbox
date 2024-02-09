@@ -35,9 +35,9 @@ def median(list_of_numbers: list[float]):
     return sorted_nums[middle]
 
 
-def mode(list_of_numbers: list[float]):
+def mode(list_of_numbers: list[float]) -> float:
     """
-    Returns the mode (most frequent) from a list of numbers, optimized using the native function
+    Returns the mode (most frequent numbers) from a list of numbers
 
     :type list_of_numbers: list[float]
     :param list_of_numbers: List of numbers
@@ -45,6 +45,17 @@ def mode(list_of_numbers: list[float]):
     :return: Mode value
     """
     return max(set(list_of_numbers), key=list_of_numbers.count)
+
+
+def mode_v2(list_of_numbers: list[float]):
+    """
+    Returns the mode(s) (most frequent numbers) from a list of numbers
+    May return a list if there are multiple modes, otherwise it's a single float
+    :type list_of_numbers: list[float]
+    :param list_of_numbers: List of numbers
+    :rtype: Union[float, list[float]]
+    :return: Mode value(s)
+    """
 
 
 def variance(list_of_numbers: list[float], mean_value: float):
