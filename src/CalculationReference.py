@@ -44,7 +44,7 @@ def mode(list_of_numbers: list[float]):
     :rtype: float
     :return: Mode value
     """
-    return statistics.mode(list_of_numbers)
+    return max(set(list_of_numbers), key=list_of_numbers.count)
 
 
 def variance(list_of_numbers: list[float], mean_value: float):
