@@ -1,6 +1,5 @@
 import src.CalculationReference as Cr
 import unittest
-import statistics
 
 
 class TestCalculationReference(unittest.TestCase):
@@ -15,5 +14,5 @@ class TestCalculationReference(unittest.TestCase):
         self.assertEqual(Cr.median([1, 2, 3, 4, 5]), 3)
         self.assertEqual(Cr.median([1, 2]), 1.5)
         self.assertEqual(Cr.median([0]), 0)
-        with self.assertRaises(statistics.StatisticsError):
+        with self.assertRaises(ValueError):
             Cr.median([])
