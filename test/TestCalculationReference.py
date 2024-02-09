@@ -16,3 +16,19 @@ class TestCalculationReference(unittest.TestCase):
         self.assertEqual(Cr.median([0]), 0)
         with self.assertRaises(ValueError):
             Cr.median([])
+
+    def test_mode(self):
+        self.assertEqual(Cr.mode([1, 2, 3, 4, 5, 5]), 5)
+        self.assertEqual(Cr.mode([1, 1]), 1)
+        self.assertEqual(Cr.mode([99]), 99)
+        self.assertEqual(Cr.mode([1, 1, 2, 2, 3, 3]), 1)
+        self.assertEqual(Cr.mode([3, 3, 2, 2, 1, 1]), 1)
+        self.assertRaises(ValueError, lambda: Cr.mode([]))
+
+    def test_mode_v2(self):
+        self.assertEqual(Cr.mode_v2([1, 2, 3, 4, 5, 5]), 5)
+        self.assertEqual(Cr.mode_v2([1, 1]), 1)
+        self.assertEqual(Cr.mode_v2([99]), 99)
+        self.assertEqual(Cr.mode_v2([1, 1, 2, 2, 3, 3]), [1, 2, 3])
+        self.assertEqual(Cr.mode_v2([3, 3, 2, 2, 1, 1]), [3, 2, 1])
+        self.assertRaises(ValueError, lambda: Cr.mode_v2([]))
