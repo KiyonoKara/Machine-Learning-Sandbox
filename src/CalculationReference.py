@@ -1,5 +1,4 @@
 import math
-import statistics
 from typing import Union
 
 
@@ -24,7 +23,16 @@ def median(list_of_numbers: list[float]):
     :rtype: float
     :return: Median value
     """
-    return statistics.median(list_of_numbers)
+    length = len(list_of_numbers)
+    if length == 0:
+        raise ValueError("List must have at least one element")
+    elif length == 1:
+        return list_of_numbers.pop()
+    sorted_nums = sorted(list_of_numbers)
+    middle = length // 2
+    if not length % 2:
+        return (sorted_nums[middle - 1] + sorted_nums[middle]) / 2.0
+    return sorted_nums[middle]
 
 
 def mode(list_of_numbers: list[float]):
