@@ -38,7 +38,7 @@ class TestCalculationReference(unittest.TestCase):
         self.assertAlmostEqual(Cr.variance([2, 8, 10, 16, 32],
                                            Cr.mean([2, 8, 10, 16, 32])), 105, 0)
         self.assertAlmostEqual(Cr.variance([2, 8, 10, 16, 32],
-                                           Cr.mean([2, 8, 10, 16, 32]), datatype='population'), 105, 0)
+                                           Cr.mean([2, 8, 10, 16, 32]), grouping_type='population'), 105, 0)
         self.assertRaises(ZeroDivisionError, lambda: Cr.variance([],1))
-        self.assertEqual(Cr.variance([1, 5], 3, datatype='population'), 4)
-        self.assertEqual(Cr.variance([1, 5], 3, datatype='sample'), 8)
+        self.assertEqual(Cr.variance([1, 5], 3, grouping_type='population'), 4)
+        self.assertEqual(Cr.variance([1, 5], 3, grouping_type='sample'), 8)
