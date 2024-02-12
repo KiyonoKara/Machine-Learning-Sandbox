@@ -2,6 +2,13 @@ import math
 from typing import Union
 from collections import Counter
 
+# Population encompasses the all the data
+# Sample is a subset of population
+group_dict = {
+    'population': 0,
+    'sample': 1
+}
+
 
 def mean(list_of_numbers: list[float]):
     """
@@ -63,12 +70,12 @@ def mode_v2(list_of_numbers: list[float]) -> Union[float, list[float]]:
     return modes[0] if len(modes) == 1 else modes
 
 
-def variance(list_of_numbers: list[float], mean_value: float, datatype='population'):
+def variance(list_of_numbers: list[float], mean_value: float, grouping_type='population'):
     """
     Returns the variance from a supplied list of numbers and mean.
     Found by taking the average of squared deviations from the mean
 
-    :param datatype: Type of data, sample or population
+    :param grouping_type: Type of data, sample or population
     :type list_of_numbers: list[float]
     :param list_of_numbers: List of numbers
     :type mean_value: float
@@ -76,14 +83,10 @@ def variance(list_of_numbers: list[float], mean_value: float, datatype='populati
     :rtype: float
     :return: The variance
     """
-    data_type_dict = {
-        'population': 0,
-        'sample': 1
-    }
     # Get number to subtract from N
     # Population: N - 0 = N
     # Sample: N - 1
-    n_0 = data_type_dict.get(datatype, 0)
+    n_0 = group_dict.get(grouping_type, 0)
 
     return sum([(x - mean_value) ** 2 for x in list_of_numbers]) / (len(list_of_numbers) - n_0)
 
@@ -153,25 +156,21 @@ def relu(x: float) -> float:
     return x * (x > 0.0)
 
 
-def stdev(nums: list[float], dev_type='population') -> float:
+def stdev(nums: list[float], grouping_type='population') -> float:
     """
     Computes standard deviation given a list of floats
     Returns 0 if only one number is provided
     Defaults to population standard deviation
     :param nums: List of floats
-    :param dev_type: STDEV type, population or sample
+    :param grouping_type: Grouping type, population or sample
     :return: The standard deviation
     """
     if len(nums) <= 1:
         return 0
-    dev_type_dict = {
-        'population': 0,
-        'sample': 1
-    }
     # Get number to subtract from N
     # Population: N - 0 = N
     # Sample: N - 1
-    p = dev_type_dict.get(dev_type, 0)
+    p = group_dict.get(grouping_type, 0)
     # Mean
     m = mean(nums)
     # Variance
