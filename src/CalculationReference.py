@@ -63,11 +63,12 @@ def mode_v2(list_of_numbers: list[float]) -> Union[float, list[float]]:
     return modes[0] if len(modes) == 1 else modes
 
 
-def variance(list_of_numbers: list[float], mean_value: float):
+def variance(list_of_numbers: list[float], mean_value: float, datatype='population'):
     """
     Returns the variance from a supplied list of numbers and mean.
     Found by taking the average of squared deviations from the mean
 
+    :param datatype: Type of data, sample or population
     :type list_of_numbers: list[float]
     :param list_of_numbers: List of numbers
     :type mean_value: float
@@ -75,7 +76,16 @@ def variance(list_of_numbers: list[float], mean_value: float):
     :rtype: float
     :return: The variance
     """
-    return sum([(x - mean_value) ** 2 for x in list_of_numbers])
+    data_type_dict = {
+        'population': 0,
+        'sample': 1
+    }
+    # Get number to subtract from N
+    # Population: N - 0 = N
+    # Sample: N - 1
+    n_0 = data_type_dict.get(datatype, 0)
+
+    return sum([(x - mean_value) ** 2 for x in list_of_numbers]) / (len(list_of_numbers) - n_0)
 
 
 def covariance(list_x: list[float], mean_x: float, list_y: list[float], mean_y: float):
