@@ -32,3 +32,13 @@ class TestCalculationReference(unittest.TestCase):
         self.assertEqual(Cr.mode_v2([1, 1, 2, 2, 3, 3]), [1, 2, 3])
         self.assertEqual(Cr.mode_v2([3, 3, 2, 2, 1, 1]), [3, 2, 1])
         self.assertRaises(ValueError, lambda: Cr.mode_v2([]))
+
+    def test_variance(self):
+        self.assertEqual(Cr.variance([1, 1, 1], 1), 0)
+        self.assertAlmostEqual(Cr.variance([2, 8, 10, 16, 32],
+                                           Cr.mean([2, 8, 10, 16, 32])), 105, 0)
+        self.assertAlmostEqual(Cr.variance([2, 8, 10, 16, 32],
+                                           Cr.mean([2, 8, 10, 16, 32]), datatype='population'), 105, 0)
+        self.assertRaises(ZeroDivisionError, lambda: Cr.variance([],1))
+        self.assertEqual(Cr.variance([1, 5], 3, datatype='population'), 4)
+        self.assertEqual(Cr.variance([1, 5], 3, datatype='sample'), 8)
