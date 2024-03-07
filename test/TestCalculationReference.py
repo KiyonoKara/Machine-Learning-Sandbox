@@ -39,6 +39,22 @@ class TestCalculationReference(unittest.TestCase):
                                            Cr.mean([2, 8, 10, 16, 32])), 105, 0)
         self.assertAlmostEqual(Cr.variance([2, 8, 10, 16, 32],
                                            Cr.mean([2, 8, 10, 16, 32]), grouping_type='population'), 105, 0)
-        self.assertRaises(ZeroDivisionError, lambda: Cr.variance([],1))
+        self.assertRaises(ZeroDivisionError, lambda: Cr.variance([], 1))
         self.assertEqual(Cr.variance([1, 5], 3, grouping_type='population'), 4)
         self.assertEqual(Cr.variance([1, 5], 3, grouping_type='sample'), 8)
+
+    def test_covariance(self):
+        l1 = [1, 2, 3]
+        l2 = [2, 4, 6]
+        self.assertAlmostEqual(Cr.covariance(l1, Cr.mean(l1), l2, Cr.mean(l2)), 1.333, 3)
+        self.assertEqual(Cr.covariance(l1, Cr.mean(l1), l2, Cr.mean(l2), grouping_type='sample'), 2)
+        self.assertRaises(ZeroDivisionError, lambda: Cr.covariance([], 0, [], 0))
+        self.assertRaises(AssertionError, lambda: Cr.covariance([1, 2], 1.5, [2], 2))
+        self.assertAlmostEqual(Cr.covariance([10, 50, 90, 150],
+                                             Cr.mean([10, 50, 90, 150]),
+                                             [26, 72, 94, 68],
+                                             Cr.mean([26, 72, 94, 68]), grouping_type='sample'), 1006.667, 3)
+        self.assertEqual(Cr.covariance([10, 50, 90, 150],
+                                       Cr.mean([10, 50, 90, 150]),
+                                       [26, 72, 94, 68],
+                                       Cr.mean([26, 72, 94, 68]), grouping_type='population'), 755)
