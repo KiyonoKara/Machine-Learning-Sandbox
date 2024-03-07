@@ -91,10 +91,11 @@ def variance(list_of_numbers: list[float], mean_value: float, grouping_type='pop
     return sum([(x - mean_value) ** 2 for x in list_of_numbers]) / (len(list_of_numbers) - n_0)
 
 
-def covariance(list_x: list[float], mean_x: float, list_y: list[float], mean_y: float):
+def covariance(list_x: list[float], mean_x: float, list_y: list[float], mean_y: float, grouping_type='population'):
     """
     Returns the covariance between two lists of numbers and uses both of their means
 
+    :param grouping_type: Type of data, sample or population
     :type list_x: list[float]
     :param list_x: List of numbers
     :type mean_x: float
@@ -106,7 +107,10 @@ def covariance(list_x: list[float], mean_x: float, list_y: list[float], mean_y: 
     :rtype: float
     :return: The covariance
     """
-    return sum((x_i - mean_x) * (y_i - mean_y) for x_i, y_i in zip(list_x, list_y))
+    assert len(list_x) == len(list_y), "Length of lists x and y must be the same"
+    N = len(list_x)
+    n_0 = group_dict.get(grouping_type, 0)
+    return sum((x_i - mean_x) * (y_i - mean_y) for x_i, y_i in zip(list_x, list_y)) / (N - n_0)
 
 
 def softmax(z: list[float]) -> list[float]:
