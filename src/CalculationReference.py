@@ -130,6 +130,7 @@ def softmax_temperature(z: list[float], tau: float) -> list[float]:
     Computes softmax values for each element in z with temperature represented as tau
     :param z: The scores
     :param tau: The temperature
+    :rtype: list[float]
     :return: Probability distributions for each element in z affected by tau
     """
     z_norm = z
@@ -144,6 +145,7 @@ def sigmoid(z: Union[float, list[float]]) -> Union[float, list[float]]:
     """
     Computes sigmoid values for each element in z
     :param z: The scores
+    :rtype: Union[float, list[float]]
     :return: Probability distribution(s) for each element in z
     """
     if isinstance(z, float) or isinstance(z, int):
@@ -154,7 +156,8 @@ def sigmoid(z: Union[float, list[float]]) -> Union[float, list[float]]:
 def relu(x: float) -> float:
     """
     Computes ReLU value for the supplied number
-    :param x: The float
+    :param x: The float to compute the ReLU for
+    :rtype: float
     :return: The ReLU result
     """
     return x * (x > 0.0)
@@ -167,6 +170,7 @@ def stdev(nums: list[float], grouping_type='population') -> float:
     Defaults to population standard deviation
     :param nums: List of floats
     :param grouping_type: Grouping type, population or sample
+    :rtype: float
     :return: The standard deviation
     """
     if len(nums) <= 1:
@@ -187,6 +191,7 @@ def dot_product(v1: list[float], v2: list[float]) -> float:
     Computes dot product of two vectors as lists
     :param v1: First vector
     :param v2: Second vector
+    :rtype: float
     :return:
     """
     if len(v1) != len(v2):
