@@ -1,5 +1,5 @@
-# Machine-Learning-Examples-1
-Examples of machine learning algorithms and applications.
+# Machine Learning Sandbox
+Machine learning sandbox with examples of ML algorithms and applications. 
 
 ## Specifics
 
